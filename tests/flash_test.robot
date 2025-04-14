@@ -17,9 +17,9 @@ Test Framework Is Working
     Should Be True    ${True}    Value is not True!
 
 
-# Flash Image to Device
-#     [Documentation]    Uses uuu tool to flash device with provided image.
-#     ${result}=    Run Process    ${UUU_COMMAND}    shell=True    timeout=${FLASH_TIMEOUT}
-#     Should Contain    ${result}    Success 1
-#     Should Be Equal As Integers    ${result.rc}    0    Flashing failed with error: ${result.stderr}
+Flash Image to Device
+    [Documentation]    Uses uuu tool to flash device with provided image.
+    ${result}=    Run Process    ${UUU_COMMAND}    shell=True    timeout=${FLASH_TIMEOUT}
+    Should Contain    ${result}    Success 1
+    Should Be Equal As Integers    ${result.rc}    0    Flashing failed with error: ${result.stderr}
 
