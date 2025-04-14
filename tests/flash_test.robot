@@ -2,8 +2,8 @@
 Library           Process
 
 *** Variables ***
-${BOOTLOADER_FILE}           ./image/emmc_all imx-boot-scu-sd.bin-flash_singleboot
-${IMAGE_FILE}                ./image/itx-image-devel-scu.rootfs-20250403084649.wic.zst
+${BOOTLOADER_FILE}           ../testpi/image/emmc_all imx-boot-scu-sd.bin-flash_singleboot
+${IMAGE_FILE}                ../testpi/image/itx-image-devel-scu.rootfs-20250403084649.wic.zst
 ${UUU_COMMAND}               uuu -b emmc_all ${BOOTLOADER_FILE} ${IMAGE_FILE}
 ${FLASH_TIMEOUT}             600
 ${EXPECTED_PROMPT}           scu login:
@@ -15,9 +15,6 @@ Test Framework Is Working
     Should Be Equal    ${1}    ${1}    Numbers are not equal!
     Should Not Be Equal    ${1}    ${2}    Numbers are unexpectedly equal!
     Should Be True    ${True}    Value is not True!
-    Should Be False    ${False}    Value is not False!
-
-
 
 
 # Flash Image to Device
