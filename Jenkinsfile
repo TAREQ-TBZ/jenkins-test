@@ -17,6 +17,7 @@ pipeline {
                     python -m venv .venv
                     source .venv/bin/activate
                     pip install robotframework
+                    echo 'robotframework installed'
                     cd ./tests
                     robot flash_test.robot
                 '''
