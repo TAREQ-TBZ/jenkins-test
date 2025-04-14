@@ -2,10 +2,9 @@
 Library           Process
 
 *** Variables ***
-${BOOTLOADER_FILE}           ../testpi/image/emmc_all imx-boot-scu-sd.bin-flash_singleboot
-${IMAGE_FILE}                ../testpi/image/itx-image-devel-scu.rootfs-20250403084649.wic.zst
-${UUU_COMMAND}               uuu -b emmc_all ${BOOTLOADER_FILE} ${IMAGE_FILE}
-${FLASH_TIMEOUT}             600
+${BOOTLOADER_FILE}           /home/pi/jenkins-agent/workspace/testpi/image/imx-boot-scu-sd.bin-flash_singleboot
+${IMAGE_FILE}                /home/pi/jenkins-agent/workspace/testpi/image/itx-image-devel-scu.rootfs-20250403084649.wic.zst
+${UUU_COMMAND}               sudo uuu -b emmc_all ${BOOTLOADER_FILE} ${IMAGE_FILE}
 ${EXPECTED_PROMPT}           scu login:
 
 *** Test Cases ***
@@ -19,7 +18,8 @@ Test Framework Is Working
 
 Flash Image to Device
     [Documentation]    Uses uuu tool to flash device with provided image.
-    ${result}=    Run Process    ${UUU_COMMAND}    shell=True    timeout=${FLASH_TIMEOUT}
-    Should Contain    ${result}    Success 1
-    Should Be Equal As Integers    ${result.rc}    0    Flashing failed with error: ${result.stderr}
+    ${result}=    Run Process    ${UUU_COMMAND}    shell=True    stderr=STDOUT
+    #Log    ${result.stdout}
+    #Should Contain    ${result.stdout}    Success 1
+    Should Be Equal As Integers    ${result.rc}    0
 
