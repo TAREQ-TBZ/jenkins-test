@@ -15,7 +15,7 @@ pipeline {
                 echo 'Hello World'
                 sh '''
                     python -m venv .venv
-                    source .venv/bin/activate
+                    . .venv/bin/activate
                     pip install robotframework
                     echo 'robotframework installed'
                     cd ./tests
@@ -27,7 +27,7 @@ pipeline {
     
     post {
         always {
-            robot outputPath: '.', passThreshold: 80.0, unstableThreshold: 70.0
+            robot outputPath: 'tests', passThreshold: 80.0, unstableThreshold: 70.0
         }
     }
 }
