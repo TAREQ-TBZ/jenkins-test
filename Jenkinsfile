@@ -1,10 +1,32 @@
 pipeline {
-    agent { docker { image 'python:3.13.2-alpine3.21' } }
+    agent { label 'linux_pi' } 
+
     stages {
-        stage('build') {
+        
+        stage('checkout') {
             steps {
-                sh 'python --version'
+                echo 'get code'
+                checkout scm
             }
+        }
+
+        stage('flash') {
+            steps {
+                echo 'Hello World'
+                sh '''
+                    python -m venv .venv
+                    source .venv/bin/activate
+                    pip install robotframework
+                    cd ./tests
+                    robot flash_test.robot
+                '''
+            }
+        }
+    }
+    
+    post {
+        always {
+            robot outputPath: '.', passThreshold: 80.0, unstableThreshold: 70.0
         }
     }
 }
