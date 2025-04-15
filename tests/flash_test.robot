@@ -3,7 +3,7 @@ Library           Process
 
 *** Variables ***
 ${BOOTLOADER_FILE}           /home/pi/jenkins-agent/workspace/testpi/image/imx-boot-scu-sd.bin-flash_singleboot
-${IMAGE_FILE}                /home/pi/jenkins-agent/workspace/testpi/image/itx-image-devel-scu.rootfs-20250403084649.wic.zst
+${IMAGE_FILE}                /home/pi/jenkins-agent/workspace/testpi/image/itx-image-testing-scu.rootfs-20250403084649.wic.zst
 ${UUU_COMMAND}               sudo uuu -b emmc_all ${BOOTLOADER_FILE} ${IMAGE_FILE}
 ${EXPECTED_PROMPT}           scu login:
 
